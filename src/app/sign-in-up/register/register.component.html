@@ -1,0 +1,123 @@
+<section class="my-5">
+    <div class="container">
+        <div>
+            <div class="d-flex justify-content-center">
+                <form class="w-50" [formGroup]="registerForm" (ngSubmit)="submitReactive()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+                            formControlName="Name">
+                        <div id="emailHelp" class="form-text"
+                            *ngIf="registerControls.Name.touched && !registerControls.Name.valid">
+                            <small class="text-danger" *ngIf="registerControls.Name.errors?.required">This
+                                fieled is required</small>
+                            <small class="text-danger" *ngIf="registerControls.Name.errors?.pattern">your name should be
+                                without spacing</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="registerEmail" formControlName="registerEmail">
+                        <div id="emailHelp" class="form-text"
+                            *ngIf="registerControls.registerEmail.touched && !registerControls.registerEmail.valid">
+                            <small class="text-danger" *ngIf="registerControls.registerEmail.errors?.required">This
+                                fieled is required</small>
+                            <small class="text-danger" *ngIf="registerControls.registerEmail.errors?.pattern">your email
+                                should be expamle@email.com</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="userName" aria-describedby="emailHelp"
+                            formControlName="userName">
+                        <div id="emailHelp" class="form-text"
+                            *ngIf="registerControls.userName.touched && !registerControls.userName.valid">
+                            <small class="text-danger" *ngIf="registerControls.userName.errors?.required">This
+                                fieled is required</small>
+                            <small class="text-danger" *ngIf="registerControls.userName.errors?.pattern">your
+                                username should be without spacing</small>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="registerPass"
+                            formControlName="registerPass">
+                        <div id="emailHelp" class="form-text"
+                            *ngIf="registerControls.registerPass.touched && !registerControls.registerPass.valid">
+                            <small class="text-danger" *ngIf="registerControls.registerPass.errors?.required">Password
+                                is required</small>
+                            <small class="text-danger" *ngIf="registerControls.registerPass.errors?.pattern">your
+                                password should be minimum eight characters, at least one uppercase letter, one
+                                lowercase letter, one number and one special character example: P@ssword1234</small>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirm_password"
+                            formControlName="confirm_password">
+                        <div id="emailHelp" class="form-text"
+                            *ngIf="registerControls.confirm_password.touched && !registerControls.confirm_password.valid">
+                            <small class="text-danger"
+                                *ngIf="registerControls.confirm_password.errors?.required">Password is required</small>
+                            <small class="text-danger"
+                                *ngIf="registerControls.confirm_password.errors.confirmedValidator">Password and Confirm
+                                Password must be match.</small>
+                        </div>
+                        <small class="text-success" *ngIf="registerControls.confirm_password.valid">Password
+                            Confirmed</small>
+                    </div>
+
+                    <div class=" my-5 border border-primary container" formArrayName="adresses"
+                        *ngFor="let adressForm of registerForm.controls.adresses['controls']; let i = index">
+                        <h3 class="m-2">Adress {{i+1}}</h3>
+                        <button type="button" class="btn btn-danger float-end my-2"
+                            (click)="deleteAdress(i)">Delete</button>
+                        <div class="d-flex w-100">
+                            <div class="w-100 p-4" [formGroupName]="i">
+                                <input type="text" class="form-control mb-3" formControlName="adress"
+                                    placeholder="Enter Adress">
+                                <div id="emailHelp" class="form-text"
+                                    *ngIf="adressForm.controls.adress.touched && !adressForm.controls.adress.valid">
+                                    <small class="text-danger"
+                                        *ngIf="adressForm.controls.adress.errors?.required">required</small>
+                                </div>
+                                <input type="text" class="form-control mb-3" formControlName="city"
+                                    placeholder="Enter City">
+                                <div id="emailHelp" class="form-text"
+                                    *ngIf="adressForm.controls.city.touched && !adressForm.controls.city.valid">
+                                    <small class="text-danger"
+                                        *ngIf="adressForm.controls.city.errors?.required">required</small>
+                                </div>
+                                <input type="text" class="form-control mb-3" formControlName="street"
+                                    placeholder="Enter Street">
+                                <div id="emailHelp" class="form-text"
+                                    *ngIf="adressForm.controls.street.touched && !adressForm.controls.street.valid">
+                                    <small class="text-danger"
+                                        *ngIf="adressForm.controls.street.errors?.required">required</small>
+                                </div>
+
+                                <input type="text" class="form-control mb-3" formControlName="country"
+                                    placeholder="Enter Country">
+                                <div id="emailHelp" class="form-text"
+                                    *ngIf="adressForm.controls.country.touched && !adressForm.controls.country.valid">
+                                    <small class="text-danger"
+                                        *ngIf="adressForm.controls.country.errors?.required">required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+                    <button type="button" class="btn btn-primary mx-2" (click)="addAdress()">Add address</button>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center">
+                <p>Already have account! <button class="btn btn-info" (click)="directToLogin()"> Login</button></p>
+            </div>
+        </div>
+
+
+    </div>
+</section>

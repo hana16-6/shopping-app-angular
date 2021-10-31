@@ -1,0 +1,8 @@
+<section class="my-5 mx-3">
+    <div class="row">
+        <div *ngFor="let product of productList" class="col-4 mb-4">
+            <app-product-card [productItem]="product" (sendDataToList)="receivedProduct($event)">
+            </app-product-card>
+        </div>
+    </div>
+</section>

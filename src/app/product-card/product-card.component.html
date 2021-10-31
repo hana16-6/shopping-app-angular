@@ -1,0 +1,16 @@
+<div class="card h-100 align-items-center p-2">
+    <img [src]="productItem.image" class="card-img-top" style="width: 150px; height: 150px;" alt="...">
+    <div class="card-body text-center p-4">
+        <h5 class="card-title fs-5">{{productItem.title}}</h5>
+        <p class="card-text fs-6">
+            {{productItem.description}} </p>
+        <p> Category : {{productItem.category}}</p>
+        <p>{{productItem.price |currency:'EGP'}}</p>
+        <button type="button" class="btn btn-primary w-100 mb-3" (click)="sendData()"
+            (click)="viewDetails(productItem.id)">View
+            Details</button>
+        <button type="button" class="btn btn-primary w-100 mb-3" (click)="addtoCart(productItem)">Add To
+            Cart</button>
+        <button type="button" class="btn btn-primary w-100 mb-3" (click)="addtoFav(productItem)">Add favorite</button>
+    </div>
+</div>

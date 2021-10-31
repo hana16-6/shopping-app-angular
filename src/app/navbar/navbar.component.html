@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/navbar">Commerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" routerLink="/register">
+                    Register
+                </a>
+                <a class="nav-link" routerLink="/login">login</a>
+                <a class="nav-link" routerLink="/cart-list"><i class="fas fa-cart-plus text-danger fs-5"></i><span
+                        class="text-secondary text-danger">{{wishListCounter}}</span></a>
+                <a class="nav-link" routerLink="/guardCom">Guard</a>
+                <a class="nav-link" routerLink="/wishList"> <span class="w-50 text-primary"><i
+                            class="fas fa-box-open"></i>
+                        {{cartCounter}}</span></a>
+            </div>
+        </div>
+    </div>
+</nav>

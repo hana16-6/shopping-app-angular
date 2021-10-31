@@ -1,0 +1,33 @@
+<section class="my-5">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <form class="w-50" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="loginEmail" #loginEmail="ngModel" ngModel required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3">
+                    <div id="emailHelp" class="form-text" *ngIf="loginForm.touched && !loginForm.valid">
+                        <small class="text-danger" *ngIf="loginEmail.errors?.required">This fieled is required</small>
+                        <small class="text-danger" *ngIf="loginEmail.errors?.pattern">your email should be
+                            expamle@email.com</small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="loginPass"
+                        #loginPass="ngModel" [(ngModel)]="loginForm.loginPass" required>
+                    <div class="form-text" *ngIf="loginPass.touched && !loginPass.valid">
+                        <small class="text-danger" *ngIf="loginPass.errors?.required">This fieled is required</small>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+            </form>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p>Don’t have account ? <button class="btn btn-info" (click)="directToLogin()">Register</button></p>
+        </div>
+
+    </div>
+</section>

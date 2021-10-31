@@ -1,0 +1,17 @@
+<section>
+    <div class="container">
+        <div class="card h-100 w-50">
+            <img [src]="item?.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item?.title}}</h5>
+                <p class="card-text">
+                    {{item?.description}} </p>
+                <p> Category : {{item?.category}}</p>
+                <p>{{item?.price |currency:'EGP'}}</p>
+                <p> Rate :{{item?.rating.rate}}</p>
+                <p> Count :{{item?.rating.count}}</p>
+                <button type="button" class="btn btn-primary" (click)="updateCounter(item)">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
